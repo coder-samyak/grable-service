@@ -17,15 +17,15 @@ type Props = {
  */
 export function EraBackdrop({ base, active, label }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [wantsVideo, setWantsVideo] = useState(false);
+  const [wantsVideo, setWantsVideo] = useState(true); // Mount instantly for preloading
   const [failed, setFailed] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    if (!active || wantsVideo) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    setWantsVideo(true);
-  }, [active, wantsVideo]);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setWantsVideo(false);
+    }
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -56,7 +56,7 @@ export function EraBackdrop({ base, active, label }: Props) {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={`${base}-poster.jpg`}
           onCanPlay={() => setPlaying(true)}
           onError={handleError}
