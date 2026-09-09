@@ -14,13 +14,17 @@ type PageShellProps = {
   intro: string;
   primaryCta?: string;
   primaryHref?: string;
+  primaryCtaClass?: string;
   secondaryCta?: string;
   secondaryHref?: string;
+  secondaryCtaClass?: string;
   cards?: Card[];
   sections?: Card[];
   faqs?: Card[];
   route?: string;
   template?: "standard" | "service" | "federal" | "resource" | "contact" | "legal";
+  backgroundImage?: string;
+  processBackgroundImage?: string;
 };
 
 const templateFocus = {
@@ -96,13 +100,17 @@ export function PageShell({
   intro,
   primaryCta = "Schedule a consultation",
   primaryHref = "/contact/",
+  primaryCtaClass = "button",
   secondaryCta = "Explore services",
   secondaryHref = "/services/",
+  secondaryCtaClass = "button secondary",
   cards = [],
   sections = [],
   faqs = [],
   route,
-  template = "standard"
+  template = "standard",
+  backgroundImage,
+  processBackgroundImage
 }: PageShellProps) {
   const labels = templateLabels[template];
   const focusItems = templateFocus[template];
@@ -128,28 +136,36 @@ export function PageShell({
   return (
     <>
       <Breadcrumbs items={crumbsFromRoute(route)} />
-      <section className="page-hero">
-        <div className="wrap hero-grid">
+      <section className={`page-hero ${backgroundImage ? 'relative' : ''}`}>
+        {backgroundImage && (
+          <img
+            className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+            src={backgroundImage}
+            alt="Hero Background"
+            style={{ pointerEvents: 'none' }}
+          />
+        )}
+        <div className={`wrap hero-grid ${backgroundImage ? 'relative z-10' : ''}`}>
           <div className="hero-copy">
-            <p className="eyebrow">{safeEyebrow}</p>
-            <h1>{safeTitle}</h1>
-            <p className="lead">{safeIntro}</p>
+            <p className="eyebrow" style={backgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{safeEyebrow}</p>
+            <h1 style={backgroundImage ? { color: '#fdfbf7' } : {}}>{safeTitle}</h1>
+            <p className="lead" style={backgroundImage ? { color: '#ffffff' } : {}}>{safeIntro}</p>
             <div className="cta-row">
-              <Link className="button" href={primaryHref}>
+              <Link className={primaryCtaClass} href={primaryHref}>
                 {primaryCta}
               </Link>
-              <Link className="button secondary" href={secondaryHref}>
+              <Link className={secondaryCtaClass} href={secondaryHref}>
                 {secondaryCta}
               </Link>
             </div>
           </div>
-          <aside className="capability-panel">
-            <p className="panel-label">{template === "resource" ? "Reader path" : "Page focus"}</p>
+          <aside className="capability-panel" style={backgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+            <p className="panel-label" style={backgroundImage ? { color: '#ffffff' } : {}}>{template === "resource" ? "Reader path" : "Page focus"}</p>
             <div className="capability-list">
               {focusItems.map(([label, body]) => (
-                <div key={label}>
-                  <strong>{label}</strong>
-                  <span>{body}</span>
+                <div key={label} style={backgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                  <strong style={backgroundImage ? { color: '#fdfbf7' } : {}}>{label}</strong>
+                  <span style={backgroundImage ? { color: '#ffffff' } : {}}>{body}</span>
                 </div>
               ))}
             </div>
@@ -203,22 +219,30 @@ export function PageShell({
       ) : null}
 
       {template !== "legal" ? (
-        <section className="section process-section">
-          <div className="section-heading">
-            <p className="eyebrow">Process</p>
-            <h2>Clear phases from assessment through operations.</h2>
+        <section className={`section process-section ${processBackgroundImage ? 'relative' : ''}`}>
+          {processBackgroundImage && (
+            <img
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={processBackgroundImage}
+              alt="Process Background"
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          <div className={`section-heading ${processBackgroundImage ? 'relative z-10' : ''}`}>
+            <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Process</p>
+            <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>Clear phases from assessment through operations.</h2>
           </div>
-          <div className="process-grid">
+          <div className={`process-grid ${processBackgroundImage ? 'relative z-10' : ''}`}>
             {[
               { step: "Assess", body: "Clarify goals, environment, integrations, data, and constraints so scope reflects how you actually operate." },
               { step: "Plan", body: "Sequence the work by business value, risk, and dependencies, with clear acceptance criteria and owners." },
               { step: "Implement", body: "Execute the technical work with validation, documentation, and stakeholder checkpoints throughout." },
               { step: "Operate", body: "Hand off cleanly, then support day-two operations, monitoring, and future change control." }
             ].map(({ step, body }, index) => (
-              <article className="process-card" key={step}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{step}</h3>
-                <p>{body}</p>
+              <article className="process-card" key={step} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                <span style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{String(index + 1).padStart(2, "0")}</span>
+                <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{step}</h3>
+                <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{body}</p>
               </article>
             ))}
           </div>
@@ -297,13 +321,13 @@ export function PageShell({
         </section>
       ) : null}
 
-      <section className="cta-section">
+      <section className="cta-section" style={{ background: 'var(--surface, #eae9df)' }}>
         <div className="wrap cta-panel">
           <div>
-            <p className="eyebrow">Next step</p>
-            <h2>{template === "legal" ? "Questions about this policy?" : "Start with a practical scoping conversation."}</h2>
+            <p className="eyebrow" style={{ color: 'var(--mj-gold, var(--gold))' }}>Next step</p>
+            <h2 style={{ color: 'var(--ink, #2b2927)' }}>{template === "legal" ? "Questions about this policy?" : "Start with a practical scoping conversation."}</h2>
           </div>
-          <Link className="button" href={primaryHref}>
+          <Link className={primaryCtaClass} href={primaryHref}>
             {primaryCta}
           </Link>
         </div>
