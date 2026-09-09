@@ -797,6 +797,73 @@ html.lenis body {
   padding: 0.2rem 0.55rem;
 }
 
+/* Custom Hero Graphic Animations */
+.hero-graphic-container {
+  animation: float 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hero-graphic-glow::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), rgba(224, 180, 58, 0.4), transparent);
+  transform: skewX(-25deg);
+  animation: scanLight 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.hero-graphic-pulse {
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+/* Text Entry Animations */
+.animate-slide-in-left {
+  animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  animation-delay: 1.8s; /* Wait for loader to fade */
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  animation-delay: 1.8s; /* Wait for loader to fade */
+}
+
+.animate-delay-100 { animation-delay: 1.9s; }
+.animate-delay-200 { animation-delay: 2.0s; }
+.animate-delay-300 { animation-delay: 2.1s; }
+
+@keyframes slideInLeft {
+  0% { transform: translateX(-50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  0% { transform: translateX(60px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotateX(2deg) rotateY(-2deg); }
+  50% { transform: translateY(-12px) rotateX(-2deg) rotateY(2deg); }
+  100% { transform: translateY(0px) rotateX(2deg) rotateY(-2deg); }
+}
+
+@keyframes scanLight {
+  0% { left: -150%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 250%; opacity: 0; }
+}
+
+@keyframes pulseGlow {
+  0% { filter: brightness(1) contrast(1); }
+  100% { filter: brightness(1.15) contrast(1.1); }
+}
+
 /* --- Agent feed --- */
 .mj-agent {
   background: #0a0f14;

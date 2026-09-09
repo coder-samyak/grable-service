@@ -8,6 +8,7 @@ import { StickyCTA } from "./components/StickyCTA";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { JsonLd, organizationSchema, websiteSchema } from "./lib/schema";
+import { PageLoader } from "./components/PageLoader";
 
 export const metadata: Metadata = {
   title: {
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
     >
       <body>
+        <PageLoader />
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
