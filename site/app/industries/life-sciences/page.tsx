@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageShell
-      backgroundVideo="/journey/Life science.mp4"
-      processBackgroundVideo="/journey/life_sciences_1.mp4"
-      splitBackgroundVideo="/journey/life_science_2.mp4"
-      stepsBackgroundVideo="/journey/life_science_3.mp4"
+      backgroundImage="/images/life-science1.png"
+      processBackgroundImage="/images/Life-science2.png"
+      splitBackgroundImage="/images/life-science3.png"
+      stepsBackgroundImage="/images/life-science4.png"
       eyebrow="Industries / Life Sciences"
       title="GxP-validated IBM Maximo for regulated life sciences operations."
       intro="Grable Services delivers validated IBM Maximo for pharmaceutical, biotech, and medical device operations, supporting calibration, preventive maintenance, and asset compliance under 21 CFR Part 11 and GxP requirements that regulators expect."

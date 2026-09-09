@@ -19,10 +19,10 @@ export default function Page() {
       secondaryHref="/industries/utilities/"
       route="/industries/electric-utilities/"
       template="standard"
-      backgroundVideo="/journey/Electecial.mp4"
-      processBackgroundVideo="/journey/electric_utilities_4.mp4"
-      splitBackgroundVideo="/journey/electric-utilities3.mp4"
-      stepsBackgroundVideo="/journey/electric_utilities_v4.mp4"
+      backgroundImage="/images/electric-utilities1 (1).png"
+      processBackgroundImage="/images/electric-utilities2.png"
+      splitBackgroundImage="/images/electric-utilites3.png"
+      stepsBackgroundImage="/images/electric-utilities4.png"
       cards={[
         {
           title: "Grid and linear assets",
