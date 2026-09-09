@@ -8,14 +8,9 @@ export function StickyCTA() {
   const [atFooter, setAtFooter] = useState(false);
 
   useEffect(() => {
-    // Never show once the visitor has dismissed it.
-    if (window.localStorage.getItem("grable-cta-dismissed") === "1") return;
+    // Show the CTA by default so it doesn't get hidden by accident
+    setShow(true);
 
-    // Only appear after the cookie banner has been accepted, so the two
-    // fixed elements never occupy the bottom of the screen at once.
-    setShow(window.localStorage.getItem("grable-cookie-ok") === "1");
-    const onAccepted = () => setShow(true);
-    window.addEventListener("grable-cookie-accepted", onAccepted);
 
     // Step aside when the footer scrolls into view so it never covers it.
     const footer = document.querySelector("footer.footer");

@@ -1391,7 +1391,7 @@ select:focus-visible,
   background: #ffffff;
   border: 1px solid var(--line);
   border-radius: 8px !important;
-  bottom: 1.25rem !important;
+  bottom: 2rem !important;
   box-shadow: 0 12px 32px rgba(16, 34, 53, 0.12);
   display: flex;
   gap: 1rem;
