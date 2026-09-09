@@ -24,7 +24,13 @@ type PageShellProps = {
   route?: string;
   template?: "standard" | "service" | "federal" | "resource" | "contact" | "legal";
   backgroundImage?: string;
+  backgroundVideo?: string;
   processBackgroundImage?: string;
+  processBackgroundVideo?: string;
+  splitBackgroundImage?: string;
+  splitBackgroundVideo?: string;
+  stepsBackgroundImage?: string;
+  stepsBackgroundVideo?: string;
 };
 
 const templateFocus = {
@@ -110,7 +116,13 @@ export function PageShell({
   route,
   template = "standard",
   backgroundImage,
-  processBackgroundImage
+  backgroundVideo,
+  processBackgroundImage,
+  processBackgroundVideo,
+  splitBackgroundImage,
+  splitBackgroundVideo,
+  stepsBackgroundImage,
+  stepsBackgroundVideo
 }: PageShellProps) {
   const labels = templateLabels[template];
   const focusItems = templateFocus[template];
@@ -133,10 +145,15 @@ export function PageShell({
     body: cleanText(faq.body)
   }));
 
+  const hasHeroBackground = Boolean(backgroundImage || backgroundVideo);
+  const hasProcessBackground = Boolean(processBackgroundImage || processBackgroundVideo);
+  const hasSplitBackground = Boolean(splitBackgroundImage || splitBackgroundVideo);
+  const hasStepsBackground = Boolean(stepsBackgroundImage || stepsBackgroundVideo);
+
   return (
     <>
       <Breadcrumbs items={crumbsFromRoute(route)} />
-      <section className={`page-hero ${backgroundImage ? 'relative' : ''}`}>
+      <section className={`page-hero ${hasHeroBackground ? 'relative' : ''}`}>
         {backgroundImage && (
           <img
             className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
@@ -149,11 +166,26 @@ export function PageShell({
             }}
           />
         )}
-        <div className={`wrap hero-grid ${backgroundImage ? 'relative z-10' : ''}`}>
+        {backgroundVideo && (
+          <video
+            className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+            src={backgroundVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ 
+              pointerEvents: 'none',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+            }}
+          />
+        )}
+        <div className={`wrap hero-grid ${hasHeroBackground ? 'relative z-10' : ''}`}>
           <div className="hero-copy">
-            <p className="eyebrow" style={backgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{safeEyebrow}</p>
-            <h1 style={backgroundImage ? { color: '#fdfbf7' } : {}}>{safeTitle}</h1>
-            <p className="lead" style={backgroundImage ? { color: '#ffffff' } : {}}>{safeIntro}</p>
+            <p className="eyebrow" style={hasHeroBackground ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{safeEyebrow}</p>
+            <h1 style={hasHeroBackground ? { color: '#fdfbf7' } : {}}>{safeTitle}</h1>
+            <p className="lead" style={hasHeroBackground ? { color: '#ffffff' } : {}}>{safeIntro}</p>
             <div className="cta-row">
               <Link className={primaryCtaClass} href={primaryHref}>
                 {primaryCta}
@@ -163,13 +195,13 @@ export function PageShell({
               </Link>
             </div>
           </div>
-          <aside className="capability-panel" style={backgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
-            <p className="panel-label" style={backgroundImage ? { color: '#ffffff' } : {}}>{template === "resource" ? "Reader path" : "Page focus"}</p>
+          <aside className="capability-panel" style={hasHeroBackground ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+            <p className="panel-label" style={hasHeroBackground ? { color: '#ffffff' } : {}}>{template === "resource" ? "Reader path" : "Page focus"}</p>
             <div className="capability-list">
               {focusItems.map(([label, body]) => (
-                <div key={label} style={backgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
-                  <strong style={backgroundImage ? { color: '#fdfbf7' } : {}}>{label}</strong>
-                  <span style={backgroundImage ? { color: '#ffffff' } : {}}>{body}</span>
+                <div key={label} style={hasHeroBackground ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                  <strong style={hasHeroBackground ? { color: '#fdfbf7' } : {}}>{label}</strong>
+                  <span style={hasHeroBackground ? { color: '#ffffff' } : {}}>{body}</span>
                 </div>
               ))}
             </div>
@@ -177,70 +209,123 @@ export function PageShell({
         </div>
       </section>
 
-      <div className={processBackgroundImage ? "relative" : ""}>
-        {processBackgroundImage && (
-          <img
-            className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
-            src={processBackgroundImage}
-            alt="Process Background"
-            style={{ 
-              pointerEvents: 'none',
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
-            }}
-          />
-        )}
-        <div className={processBackgroundImage ? "relative z-10" : ""}>
-          {safeCards.length > 0 ? (
+      {safeCards.length > 0 ? (
+        <div className={hasProcessBackground ? "relative" : ""}>
+          {processBackgroundImage && (
+            <img
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={processBackgroundImage}
+              alt="Process Background"
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          {processBackgroundVideo && (
+            <video
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={processBackgroundVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          <div className={hasProcessBackground ? "relative z-10" : ""}>
             <section className="section">
-              <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{labels.cards}</p>
-              <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{labels.cardsTitle}</h2>
+              <p className="eyebrow" style={hasProcessBackground ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{labels.cards}</p>
+              <h2 style={hasProcessBackground ? { color: '#fdfbf7' } : {}}>{labels.cardsTitle}</h2>
               <div className="card-grid">
                 {safeCards.map((card) => {
                   const content = (
                     <>
-                      <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{card.title}</h3>
-                      <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{card.body}</p>
-                      {card.href ? <span style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Learn more</span> : null}
+                      <h3 style={hasProcessBackground ? { color: '#fdfbf7' } : {}}>{card.title}</h3>
+                      <p style={hasProcessBackground ? { color: '#ffffff' } : {}}>{card.body}</p>
+                      {card.href ? <span style={hasProcessBackground ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Learn more</span> : null}
                     </>
                   );
 
                   return card.href ? (
-                    <Link className="card" href={card.href} key={card.title} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                    <Link className="card" href={card.href} key={card.title} style={hasProcessBackground ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
                       {content}
                     </Link>
                   ) : (
-                    <div className="card" key={card.title} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                    <div className="card" key={card.title} style={hasProcessBackground ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
                       {content}
                     </div>
                   );
                 })}
               </div>
             </section>
-          ) : null}
+          </div>
+        </div>
+      ) : null}
 
-          {safeSections.length > 0 ? (
+      {safeSections.length > 0 ? (
+        <div className={hasSplitBackground ? "relative" : ""}>
+          {splitBackgroundImage && (
+            <img
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={splitBackgroundImage}
+              alt="Split Section Background"
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          {splitBackgroundVideo && (
+            <video
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={splitBackgroundVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          <div className={hasSplitBackground ? "relative z-10" : ""}>
             <section className="section split-section">
               <div>
-                <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{labels.details}</p>
-                <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{template === "legal" ? "What this page covers." : "How the work is organized."}</h2>
+                <p className="eyebrow" style={hasSplitBackground ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{labels.details}</p>
+                <h2 style={hasSplitBackground ? { color: '#fdfbf7' } : {}}>{template === "legal" ? "What this page covers." : "How the work is organized."}</h2>
               </div>
               <div className="component-stack">
                 {safeSections.map((section) => (
-                  <article className="component-row" key={section.title} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
-                    <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{section.title}</h3>
-                    <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{section.body}</p>
+                  <article className="component-row" key={section.title} style={hasSplitBackground ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                    <h3 style={hasSplitBackground ? { color: '#fdfbf7' } : {}}>{section.title}</h3>
+                    <p style={hasSplitBackground ? { color: '#ffffff' } : {}}>{section.body}</p>
                   </article>
                 ))}
               </div>
             </section>
-          ) : null}
+          </div>
+        </div>
+      ) : null}
 
-          {template !== "legal" ? (
-            <section className="section process-section" style={processBackgroundImage ? { background: 'transparent' } : {}}>
+      {template !== "legal" ? (
+        <div className={hasStepsBackground ? "relative" : ""}>
+          {stepsBackgroundImage && (
+            <img
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={stepsBackgroundImage}
+              alt="Steps Section Background"
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          {stepsBackgroundVideo && (
+            <video
+              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              src={stepsBackgroundVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ pointerEvents: 'none' }}
+            />
+          )}
+          <div className={hasStepsBackground ? "relative z-10" : ""}>
+            <section className="section process-section" style={hasStepsBackground ? { background: 'transparent' } : {}}>
               <div className="section-heading">
-                <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Process</p>
-                <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>Clear phases from assessment through operations.</h2>
+                <p className="eyebrow" style={hasStepsBackground ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Process</p>
+                <h2 style={hasStepsBackground ? { color: '#fdfbf7' } : {}}>Clear phases from assessment through operations.</h2>
               </div>
               <div className="process-grid">
                 {[
@@ -249,17 +334,17 @@ export function PageShell({
                   { step: "Implement", body: "Execute the technical work with validation, documentation, and stakeholder checkpoints throughout." },
                   { step: "Operate", body: "Hand off cleanly, then support day-two operations, monitoring, and future change control." }
                 ].map(({ step, body }, index) => (
-                  <article className="process-card" key={step} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
-                    <span style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{String(index + 1).padStart(2, "0")}</span>
-                    <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{step}</h3>
-                    <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{body}</p>
+                  <article className="process-card" key={step} style={hasStepsBackground ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                    <span style={hasStepsBackground ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{String(index + 1).padStart(2, "0")}</span>
+                    <h3 style={hasStepsBackground ? { color: '#fdfbf7' } : {}}>{step}</h3>
+                    <p style={hasStepsBackground ? { color: '#ffffff' } : {}}>{body}</p>
                   </article>
                 ))}
               </div>
             </section>
-          ) : null}
+          </div>
         </div>
-      </div>
+      ) : null}
 
       {template === "federal" ? (
         <section className="section">

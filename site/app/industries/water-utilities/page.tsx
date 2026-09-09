@@ -19,6 +19,10 @@ export default function Page() {
       secondaryHref="/industries/utilities/"
       route="/industries/water-utilities/"
       template="standard"
+      backgroundVideo="/journey/Water_1.mp4"
+      processBackgroundVideo="/journey/Water_2.mp4"
+      splitBackgroundVideo="/journey/water_3.mp4"
+      stepsBackgroundVideo="/journey/water_4.mp4"
       cards={[
         {
           title: "Linear pipeline assets",
