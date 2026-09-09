@@ -43,7 +43,7 @@ export const journeyEras: JourneyEra[] = [
     facts: ["Client-server architecture", "Green-screen terminals", "Paper work orders"],
     grableNote: "Our team cut its teeth on these systems — we've supported Maximo since the CRT days.",
     mockup: "crt",
-    media: { base: "/journey/Homesection" },
+    media: { base: "/journey/era-1.1" },
     accent: "#33ff66"
   },
   {
@@ -60,7 +60,7 @@ export const journeyEras: JourneyEra[] = [
     facts: ["J2EE web architecture", "Zero client installs", "IBM acquisition, 2006"],
     grableNote: "We migrated client-server sites to the web era without losing a single work order history.",
     mockup: "retroBrowser",
-    media: { base: "/journey/Homesection" },
+    media: { base: "/journey/era-2.2" },
     accent: "#5aa7e8"
   },
   {
@@ -77,7 +77,7 @@ export const journeyEras: JourneyEra[] = [
     facts: ["Start Centers & KPIs", "Mobile workforce add-ons", "Industry solutions"],
     grableNote: "Grable ran Maximo 7.x in production for federal and commercial estates through the entire era.",
     mockup: "startCenter",
-    media: { base: "/journey/Homesection" },
+    media: { base: "/journey/era-3.3" },
     accent: "#0f62fe"
   },
   {
@@ -94,7 +94,7 @@ export const journeyEras: JourneyEra[] = [
     facts: ["Containerized on OpenShift", "Monitor · Health · Predict", "AppPoints licensing"],
     grableNote: "We stood up early MAS 8 environments and carried 7.x customers across the suite boundary.",
     mockup: "masDashboard",
-    media: { base: "/journey/Homesection" },
+    media: { base: "/journey/era-4.4" },
     accent: "#22d3ee"
   },
   {
@@ -111,7 +111,7 @@ export const journeyEras: JourneyEra[] = [
     facts: ["Maximo Copilot (genAI)", "Predictive scheduling", "7.6 EOS migration wave"],
     grableNote: "We plan and execute MAS 9 migrations end-to-end — assessment to hypercare.",
     mockup: "copilotChat",
-    media: { base: "/journey/Homesection" },
+    media: { base: "/journey/era-5.5" },
     accent: "#7dd3fc"
   },
   {
@@ -128,7 +128,7 @@ export const journeyEras: JourneyEra[] = [
     facts: ["Autonomous triage", "Prescriptive work orders", "Human-in-the-loop approval"],
     grableNote: "SDVOSB · IBM partner — we take federal and commercial estates into the AI era.",
     mockup: "agentFeed",
-    media: { base: "/journey/Homesection" },
+    media: { base: "/journey/era-6.6" },
     accent: "#e0b43a"
   }
 ];

@@ -40,12 +40,33 @@ export function EraBackdrop({ base, active, label }: Props) {
   }, [active, failed, wantsVideo]);
 
   const handleError = () => {
-    // Only fail if the current src is actually broken
     if (videoRef.current?.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
       setFailed(true);
       setPlaying(false);
     }
   };
 
-  return null;
+  return (
+    <div className="mj-era__backdrop" aria-hidden="true">
+      <div className="mj-era__gradient" />
+      {!failed && wantsVideo && (
+        <video
+          ref={videoRef}
+          className={`mj-era__video${playing ? " is-playing" : ""}`}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={`${base}-poster.jpg`}
+          onCanPlay={() => setPlaying(true)}
+          onError={handleError}
+        >
+          <source src={`${base}.webm`} type="video/webm" />
+          <source src={`${base}.mp4`} type="video/mp4" />
+        </video>
+      )}
+      <div className="mj-era__scrim" />
+    </div>
+  );
 }
+

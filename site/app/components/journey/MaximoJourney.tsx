@@ -172,10 +172,13 @@ export function MaximoJourney() {
         <div style={{ position: "sticky", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 0, overflow: "hidden" }}>
           <div className="mj-era__gradient" style={{ position: "absolute", inset: 0 }} />
           <img
-            src="/images/Background-image.jpg"
+            src="/images/image.png"
             alt="Journey Background"
             className="mj-era__video is-playing"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.95 }}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="mj-era__scrim" style={{ position: "absolute", inset: 0 }} />
           {/* Gradient to blend with the hero section above */}

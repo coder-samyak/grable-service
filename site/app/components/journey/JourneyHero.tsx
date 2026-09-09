@@ -9,8 +9,11 @@ export function JourneyHero() {
     <section className="mj-hero relative" aria-label="Grable Services — IBM Maximo consulting">
       <img
         className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
-        src="/images/Background-image-home.jpg"
+        src="/images/image.png"
         alt="Hero Background"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
       />
       <div className="absolute inset-0 bg-black/40 z-0" />
       {/* Gradient to blend with the era section below */}

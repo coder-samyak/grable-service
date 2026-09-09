@@ -142,7 +142,11 @@ export function PageShell({
             className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
             src={backgroundImage}
             alt="Hero Background"
-            style={{ pointerEvents: 'none' }}
+            style={{ 
+              pointerEvents: 'none',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+            }}
           />
         )}
         <div className={`wrap hero-grid ${backgroundImage ? 'relative z-10' : ''}`}>
@@ -179,7 +183,11 @@ export function PageShell({
             className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
             src={processBackgroundImage}
             alt="Process Background"
-            style={{ pointerEvents: 'none' }}
+            style={{ 
+              pointerEvents: 'none',
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
+            }}
           />
         )}
         <div className={processBackgroundImage ? "relative z-10" : ""}>

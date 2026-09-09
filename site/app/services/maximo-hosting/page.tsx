@@ -1,6 +1,5 @@
 import { PageShell } from "../../components/PageShell";
-import { StepSection } from "../../components/StepSection";
-import { HostingFeed } from "../../components/journey/mockups/HostingFeed";
+import { serviceCards } from "../../data/site";
 import "../../journey.css";
 
 export default function MaximoHostingPage() {
@@ -18,7 +17,7 @@ export default function MaximoHostingPage() {
         processBackgroundImage="/images/BackgroundimageHosting.jpg"
       />
 
-      <div className="relative">
+      <div className="relative pb-32">
         <div className="sticky top-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
           <img
             src="/images/Hostingbackground.jpg"
@@ -26,35 +25,27 @@ export default function MaximoHostingPage() {
             className="w-full h-full object-cover blur-[8px] opacity-60"
           />
         </div>
-        <div className="relative z-10 -mt-[100vh]">
-          <StepSection
-            stepNumber={1}
-            title="Managed Maximo (Maximo as a Service)"
-            body="Full-service Maximo operations for teams that want predictable uptime, support, backups, patching, and database coverage. We run the infrastructure, OS, Maximo patches, backups, monitoring, and support so your team focuses on maintenance and asset management."
-            href="/services/maximo-hosting/managed/"
-            content={<HostingFeed type="managed" active={true} />}
-            accent="#e0b43a"
-            isDarkTheme={true}
-          />
-
-          <StepSection
-            stepNumber={2}
-            title="IaaS and PaaS Options"
-            body="Separate infrastructure and platform options for buyers who need more control over cloud model, tenancy, and operational boundaries. Choose the level of managed control that fits your team and governance requirements."
-            href="/services/maximo-hosting/iaas/"
-            content={<HostingFeed type="paas" active={true} />}
-            accent="#22d3ee"
-            isDarkTheme={true}
-          />
-
-          <StepSection
-            stepNumber={3}
-            title="Operating Model & Support"
-            body="Hosting scope is documented around environment ownership, access, monitoring, backups, disaster recovery, support expectations, and escalation paths. Clear boundaries mean predictable operations and clean handoff to day-two support."
-            content={<HostingFeed type="operations" active={true} />}
-            accent="#7dd3fc"
-            isDarkTheme={true}
-          />
+        
+        {/* Transparent Cards Grid (No Dynamic Scroll) */}
+        <div className="relative z-10 -mt-[70vh] px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {serviceCards.map((card, idx) => (
+              <div 
+                key={card.title} 
+                className="p-8 rounded-2xl border border-white/20 bg-black/20 backdrop-blur-lg shadow-xl transition-all duration-300 hover:bg-black/30 hover:border-white/40"
+              >
+                <p className="text-white/60 text-sm font-mono mb-4 tracking-widest uppercase">
+                  STEP {idx + 1} &rarr;
+                </p>
+                <h3 className="text-[#fdfbf7] text-2xl font-medium mb-4">
+                  {card.title}
+                </h3>
+                <p className="text-white/80 leading-relaxed text-sm md:text-base">
+                  {card.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
