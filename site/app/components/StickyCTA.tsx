@@ -24,7 +24,6 @@ export function StickyCTA() {
     }
 
     return () => {
-      window.removeEventListener("grable-cookie-accepted", onAccepted);
       observer?.disconnect();
     };
   }, []);
