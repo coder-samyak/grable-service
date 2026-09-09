@@ -173,81 +173,85 @@ export function PageShell({
         </div>
       </section>
 
-      {safeCards.length > 0 ? (
-        <section className="section">
-          <p className="eyebrow">{labels.cards}</p>
-          <h2>{labels.cardsTitle}</h2>
-          <div className="card-grid">
-            {safeCards.map((card) => {
-              const content = (
-                <>
-                  <h3>{card.title}</h3>
-                  <p>{card.body}</p>
-                  {card.href ? <span>Learn more</span> : null}
-                </>
-              );
+      <div className={processBackgroundImage ? "relative" : ""}>
+        {processBackgroundImage && (
+          <img
+            className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+            src={processBackgroundImage}
+            alt="Process Background"
+            style={{ pointerEvents: 'none' }}
+          />
+        )}
+        <div className={processBackgroundImage ? "relative z-10" : ""}>
+          {safeCards.length > 0 ? (
+            <section className="section">
+              <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{labels.cards}</p>
+              <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{labels.cardsTitle}</h2>
+              <div className="card-grid">
+                {safeCards.map((card) => {
+                  const content = (
+                    <>
+                      <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{card.title}</h3>
+                      <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{card.body}</p>
+                      {card.href ? <span style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Learn more</span> : null}
+                    </>
+                  );
 
-              return card.href ? (
-                <Link className="card" href={card.href} key={card.title}>
-                  {content}
-                </Link>
-              ) : (
-                <div className="card" key={card.title}>
-                  {content}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
+                  return card.href ? (
+                    <Link className="card" href={card.href} key={card.title} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                      {content}
+                    </Link>
+                  ) : (
+                    <div className="card" key={card.title} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                      {content}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          ) : null}
 
-      {safeSections.length > 0 ? (
-        <section className="section split-section">
-          <div>
-            <p className="eyebrow">{labels.details}</p>
-            <h2>{template === "legal" ? "What this page covers." : "How the work is organized."}</h2>
-          </div>
-          <div className="component-stack">
-            {safeSections.map((section) => (
-              <article className="component-row" key={section.title}>
-                <h3>{section.title}</h3>
-                <p>{section.body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      ) : null}
+          {safeSections.length > 0 ? (
+            <section className="section split-section">
+              <div>
+                <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{labels.details}</p>
+                <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{template === "legal" ? "What this page covers." : "How the work is organized."}</h2>
+              </div>
+              <div className="component-stack">
+                {safeSections.map((section) => (
+                  <article className="component-row" key={section.title} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                    <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{section.title}</h3>
+                    <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{section.body}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
-      {template !== "legal" ? (
-        <section className={`section process-section ${processBackgroundImage ? 'relative' : ''}`}>
-          {processBackgroundImage && (
-            <img
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
-              src={processBackgroundImage}
-              alt="Process Background"
-              style={{ pointerEvents: 'none' }}
-            />
-          )}
-          <div className={`section-heading ${processBackgroundImage ? 'relative z-10' : ''}`}>
-            <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Process</p>
-            <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>Clear phases from assessment through operations.</h2>
-          </div>
-          <div className={`process-grid ${processBackgroundImage ? 'relative z-10' : ''}`}>
-            {[
-              { step: "Assess", body: "Clarify goals, environment, integrations, data, and constraints so scope reflects how you actually operate." },
-              { step: "Plan", body: "Sequence the work by business value, risk, and dependencies, with clear acceptance criteria and owners." },
-              { step: "Implement", body: "Execute the technical work with validation, documentation, and stakeholder checkpoints throughout." },
-              { step: "Operate", body: "Hand off cleanly, then support day-two operations, monitoring, and future change control." }
-            ].map(({ step, body }, index) => (
-              <article className="process-card" key={step} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
-                <span style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{String(index + 1).padStart(2, "0")}</span>
-                <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{step}</h3>
-                <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      ) : null}
+          {template !== "legal" ? (
+            <section className="section process-section" style={processBackgroundImage ? { background: 'transparent' } : {}}>
+              <div className="section-heading">
+                <p className="eyebrow" style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>Process</p>
+                <h2 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>Clear phases from assessment through operations.</h2>
+              </div>
+              <div className="process-grid">
+                {[
+                  { step: "Assess", body: "Clarify goals, environment, integrations, data, and constraints so scope reflects how you actually operate." },
+                  { step: "Plan", body: "Sequence the work by business value, risk, and dependencies, with clear acceptance criteria and owners." },
+                  { step: "Implement", body: "Execute the technical work with validation, documentation, and stakeholder checkpoints throughout." },
+                  { step: "Operate", body: "Hand off cleanly, then support day-two operations, monitoring, and future change control." }
+                ].map(({ step, body }, index) => (
+                  <article className="process-card" key={step} style={processBackgroundImage ? { background: 'transparent', borderColor: 'var(--mj-gold, #e0b43a)' } : {}}>
+                    <span style={processBackgroundImage ? { color: 'var(--mj-gold, #e0b43a)' } : {}}>{String(index + 1).padStart(2, "0")}</span>
+                    <h3 style={processBackgroundImage ? { color: '#fdfbf7' } : {}}>{step}</h3>
+                    <p style={processBackgroundImage ? { color: '#ffffff' } : {}}>{body}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+      </div>
 
       {template === "federal" ? (
         <section className="section">

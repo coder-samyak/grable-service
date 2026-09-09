@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageShell } from "../../../components/PageShell";
+import "../../../journey.css";
 
 export const metadata: Metadata = {
   title: "Managed Maximo Hosting (MaaS)",
@@ -15,8 +16,12 @@ export default function Page() {
       intro="Grable Services runs your IBM Maximo Application Suite (MAS 9) environment end to end on Red Hat OpenShift. We own the infrastructure, OS and Maximo patching, database administration, backups, monitoring, security, and disaster recovery so your team can focus on maintenance and asset management instead of platform operations."
       primaryCta="Talk to a Maximo hosting team"
       primaryHref="/contact/"
+      primaryCtaClass="mj-btn mj-btn--ghost"
       secondaryCta="Compare IaaS hosting"
       secondaryHref="/services/maximo-hosting/iaas/"
+      secondaryCtaClass="mj-btn mj-btn--ghost"
+      backgroundImage="/images/Managed.jpg"
+      processBackgroundImage="/images/ManagedHostingPage.jpg"
       cards={[
         {
           title: "Infrastructure operations",
