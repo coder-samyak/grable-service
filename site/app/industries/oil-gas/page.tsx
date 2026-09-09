@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <PageShell
       backgroundVideo="/journey/Oil and gas.mp4"
-      processBackgroundVideo="/journey/oli and gas 2.mp4"
+      processBackgroundVideo="/journey/oil and gas copy.mp4"
       splitBackgroundVideo="/journey/Oil and gas 3.mp4"
       stepsBackgroundVideo="/journey/oil and gas 4.mp4"
       eyebrow="Oil and Gas"

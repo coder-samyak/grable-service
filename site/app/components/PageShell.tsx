@@ -156,29 +156,21 @@ export function PageShell({
       <section className={`page-hero ${hasHeroBackground ? 'relative' : ''}`}>
         {backgroundImage && (
           <img
-            className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+            className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
             src={backgroundImage}
             alt="Hero Background"
-            style={{ 
-              pointerEvents: 'none',
-              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
-            }}
+            style={{ pointerEvents: 'none' }}
           />
         )}
         {backgroundVideo && (
           <video
-            className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+            className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
             src={backgroundVideo}
             autoPlay
             loop
             muted
             playsInline
-            style={{ 
-              pointerEvents: 'none',
-              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
-            }}
+            style={{ pointerEvents: 'none' }}
           />
         )}
         <div className={`wrap hero-grid ${hasHeroBackground ? 'relative z-10' : ''}`}>
@@ -213,7 +205,7 @@ export function PageShell({
         <div className={hasProcessBackground ? "relative" : ""}>
           {processBackgroundImage && (
             <img
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
               src={processBackgroundImage}
               alt="Process Background"
               style={{ pointerEvents: 'none' }}
@@ -221,7 +213,7 @@ export function PageShell({
           )}
           {processBackgroundVideo && (
             <video
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
               src={processBackgroundVideo}
               autoPlay
               loop
@@ -264,7 +256,7 @@ export function PageShell({
         <div className={hasSplitBackground ? "relative" : ""}>
           {splitBackgroundImage && (
             <img
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
               src={splitBackgroundImage}
               alt="Split Section Background"
               style={{ pointerEvents: 'none' }}
@@ -272,7 +264,7 @@ export function PageShell({
           )}
           {splitBackgroundVideo && (
             <video
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
               src={splitBackgroundVideo}
               autoPlay
               loop
@@ -304,7 +296,7 @@ export function PageShell({
         <div className={hasStepsBackground ? "relative" : ""}>
           {stepsBackgroundImage && (
             <img
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
               src={stepsBackgroundImage}
               alt="Steps Section Background"
               style={{ pointerEvents: 'none' }}
@@ -312,7 +304,7 @@ export function PageShell({
           )}
           {stepsBackgroundVideo && (
             <video
-              className="absolute inset-0 w-full h-full object-cover blur-[8px] opacity-60 z-0"
+              className="absolute inset-0 w-full h-full object-cover blur-[2px] brightness-[0.35] z-0"
               src={stepsBackgroundVideo}
               autoPlay
               loop
