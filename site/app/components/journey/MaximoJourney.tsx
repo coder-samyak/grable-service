@@ -171,17 +171,12 @@ export function MaximoJourney() {
         {/* Global Continuous Background Video */}
         <div style={{ position: "sticky", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 0, overflow: "hidden" }}>
           <div className="mj-era__gradient" style={{ position: "absolute", inset: 0 }} />
-          <video
+          <img
+            src="/images/Background-image.jpg"
+            alt="Journey Background"
             className="mj-era__video is-playing"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.95 }}
-            muted
-            loop
-            autoPlay
-            playsInline
-            preload="auto"
-          >
-            <source src="/journey/Homesection.mp4" type="video/mp4" />
-          </video>
+          />
           <div className="mj-era__scrim" style={{ position: "absolute", inset: 0 }} />
           {/* Gradient to blend with the hero section above */}
           <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#071120] to-transparent z-[2] pointer-events-none" />
