@@ -15,6 +15,7 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 export function MaximoJourney() {
   const pageRef = useRef<HTMLDivElement>(null);
   const journeyRef = useRef<HTMLDivElement>(null);
+  const erasContainerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [railVisible, setRailVisible] = useState(false);
 
@@ -22,7 +23,8 @@ export function MaximoJourney() {
   // Works identically with or without Lenis/GSAP (reduced-motion safe).
   useEffect(() => {
     const journey = journeyRef.current;
-    if (!journey) return;
+    const erasContainer = erasContainerRef.current;
+    if (!journey || !erasContainer) return;
 
     const sections = Array.from(journey.querySelectorAll<HTMLElement>("[data-era-index]"));
     const eraObserver = new IntersectionObserver(
@@ -43,7 +45,7 @@ export function MaximoJourney() {
       ([entry]) => setRailVisible(entry.isIntersecting),
       { rootMargin: "-10% 0px -10% 0px", threshold: 0 }
     );
-    railObserver.observe(journey);
+    railObserver.observe(erasContainer);
 
     return () => {
       eraObserver.disconnect();
@@ -58,7 +60,8 @@ export function MaximoJourney() {
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const journey = journeyRef.current;
-        if (!journey) return;
+        const erasContainer = erasContainerRef.current;
+        if (!journey || !erasContainer) return;
 
         // Hero intro
         gsap.from("[data-hero-stagger]", {
@@ -74,9 +77,9 @@ export function MaximoJourney() {
         const setDesktop = gsap.quickSetter("[data-rail-progress]", "scaleY");
         const setMobile = gsap.quickSetter("[data-rail-progress-mobile]", "scaleX");
         ScrollTrigger.create({
-          trigger: journey,
+          trigger: erasContainer,
           start: "top center",
-          end: "bottom bottom",
+          end: "bottom center",
           scrub: true,
           onUpdate: (self) => {
             setDesktop(self.progress);
@@ -180,12 +183,16 @@ export function MaximoJourney() {
             <source src="/journey/Homesection.mp4" type="video/mp4" />
           </video>
           <div className="mj-era__scrim" style={{ position: "absolute", inset: 0 }} />
+          {/* Gradient to blend with the hero section above */}
+          <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#071120] to-transparent z-[2] pointer-events-none" />
         </div>
         {/* Era sections rendered on top */}
         <div style={{ position: "relative", zIndex: 1, marginTop: "-100vh" }}>
-          {journeyEras.map((era) => (
-            <EraSection key={era.id} era={era} active={activeIndex === era.index && railVisible} />
-          ))}
+          <div ref={erasContainerRef}>
+            {journeyEras.map((era) => (
+              <EraSection key={era.id} era={era} active={activeIndex === era.index && railVisible} />
+            ))}
+          </div>
           <FinalCTA />
         </div>
       </div>

@@ -90,7 +90,7 @@ export function Header() {
               onMouseEnter={() => open(group.href)}
               onMouseLeave={closeSoon}
             >
-              <Link aria-expanded={openMenu === group.href} href={group.href} onClick={closeNow}>
+              <Link aria-expanded={openMenu === group.href} href={group.href} onClick={closeNow} data-cursor="zoom">
                 {group.label}
               </Link>
               <div className="mega-panel rich-mega" onMouseEnter={cancelClose}>

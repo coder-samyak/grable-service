@@ -19,7 +19,7 @@ export function Footer() {
           <div className="footer-group" key={group.title}>
             <h2>{group.title}</h2>
             {group.links.map((link) => (
-              <Link href={link.href} key={link.href}>
+              <Link href={link.href} key={link.href} data-cursor="zoom">
                 {link.label}
               </Link>
             ))}

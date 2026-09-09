@@ -46,7 +46,7 @@ export function EraSection({ era, active }: Props) {
               <span>{era.grableNote}</span>
             </p>
           </div>
-          <div className="mj-era__mockup" data-era-mockup="">
+          <div className="mj-era__mockup mockup-animate" data-era-mockup="" style={{ color: "#FAF9F6" }}>
             <Mockup active={active} />
           </div>
         </div>

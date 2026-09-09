@@ -30,7 +30,7 @@ html {
 body {
   background: var(--surface);
   color: var(--ink);
-  font-family: var(--font-body), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: "Charter", "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
   font-size: 1.25rem;
   line-height: 1.8;
   margin: 0;
@@ -1774,4 +1774,40 @@ select:focus-visible,
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Custom Cursor Zoom */
+[data-cursor="zoom"] {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  will-change: transform;
+  display: inline-block;
+}
+
+[data-cursor="zoom"]:hover {
+  transform: scale(1.05);
+}
+
+/* Mockup CSS Animations */
+.mockup-animate {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.mockup-animate:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(255, 215, 0, 0.15);
+}
+
+/* Text Gradient for Main Title */
+.hero-title-texture {
+  background: linear-gradient(135deg, #FAF9F6 0%, #d4bc78 50%, #FAF9F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: textureGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes textureGlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
 }

@@ -37,11 +37,11 @@ export function PageLoader() {
         {/* Outer track */}
         <div className="w-24 h-24 border-4 border-[var(--soft)] rounded-full absolute"></div>
         {/* Spinning indicator */}
-        <div className="w-24 h-24 border-4 border-transparent border-t-[var(--primary)] rounded-full animate-spin absolute"></div>
+        <div className="w-24 h-24 border-4 border-transparent border-t-[var(--gold)] rounded-full animate-spin absolute"></div>
         {/* Logo in the center */}
         <img src="/images/grable-mark.png" alt="Grable Services" className="w-10 h-10 object-contain z-10 animate-pulse" />
       </div>
-      <div className="mt-6 text-[var(--primary)] font-mono text-sm tracking-widest uppercase flex flex-col items-center gap-1">
+      <div className="mt-6 text-[var(--gold)] font-mono text-sm tracking-widest uppercase flex flex-col items-center gap-1">
         <span className="animate-pulse">Loading...</span>
         <span className="font-bold text-lg">{progress}%</span>
       </div>

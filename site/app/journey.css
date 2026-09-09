@@ -17,7 +17,7 @@
   --mj-line: rgba(23, 33, 43, 0.14);
   --mj-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --mj-font-display: var(--font-display), "Space Grotesk", Inter, ui-sans-serif, sans-serif;
-  --mj-font-body: var(--font-body), Inter, ui-sans-serif, sans-serif;
+  --mj-font-body: "Charter", "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
   --mj-font-mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
   --mj-rail-w: 96px;
 }
@@ -981,7 +981,7 @@ html.lenis body {
 .mj-final__chips-track {
   display: flex;
   width: max-content;
-  animation: none;
+  animation: mj-marquee 20s linear infinite;
 }
 .mj-final__chips-marquee:hover .mj-final__chips-track {
   animation-play-state: paused;

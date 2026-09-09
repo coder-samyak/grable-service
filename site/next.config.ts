@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["10.59.167.35", "localhost"],
   trailingSlash: true,
   // Keep the Sanity Studio toolkit out of the server bundle so React's
   // createContext resolves correctly (avoids "createContext is not a function").
