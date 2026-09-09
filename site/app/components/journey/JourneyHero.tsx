@@ -33,7 +33,7 @@ export function JourneyHero() {
           </p>
         </div>
         
-        <div className="hidden md:block relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-500 hero-graphic-container hero-graphic-glow animate-slide-in-right animate-delay-200">
+        <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-500 hero-graphic-container hero-graphic-glow animate-slide-in-right animate-delay-200 mt-8 md:mt-0">
           <img 
             src="/images/hero_graphic.png" 
             alt="AI Enterprise Asset Management" 
