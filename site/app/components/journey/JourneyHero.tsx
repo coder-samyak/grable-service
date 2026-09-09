@@ -21,8 +21,8 @@ export function JourneyHero() {
           <p className="mj-mono mj-hero__eyebrow animate-slide-in-left drop-shadow-sm">
             {journeyHero.eyebrow}
           </p>
-          <h1 className="mj-hero__title drop-shadow-md flex flex-col items-center text-center mx-auto w-fit" data-cursor="zoom" style={{ color: '#fdfbf7' }}>
-            <span style={{ display: 'flex', alignItems: 'baseline', gap: '0.25em', lineHeight: '1.1' }}>
+          <h1 className="mj-hero__title drop-shadow-md flex flex-col items-center text-center mx-auto max-w-full px-2" data-cursor="zoom" style={{ color: '#fdfbf7' }}>
+            <span style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', flexWrap: 'wrap', gap: '0.25em', lineHeight: '1.1' }}>
               <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>
                 <TypewriterText text="Thirty years" delay={1800} speed={40} />
               </span>
