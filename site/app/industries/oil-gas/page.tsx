@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageShell
+      backgroundVideo="/journey/Oil and gas.mp4"
+      processBackgroundVideo="/journey/oli and gas 2.mp4"
+      splitBackgroundVideo="/journey/Oil and gas 3.mp4"
+      stepsBackgroundVideo="/journey/oil and gas 4.mp4"
       eyebrow="Oil and Gas"
       title="IBM Maximo for Oil and Gas Asset Management"
       intro="Oil and gas operators have to manage integrity and HSE compliance on high-consequence assets while cutting unplanned downtime. Specializing in IBM Maximo and MAS 9, Grable Services helps operators apply Maximo to production assets, pipeline integrity, and maintenance across upstream, midstream, and downstream operations."
